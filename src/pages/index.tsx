@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function Home() {
   const [title, setTitle] = useState('');
@@ -20,11 +20,11 @@ export default function Home() {
     
   }, []);
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
     if (!token) {
-      setMessage(e);
+      setMessage('Ошибка токена');
       return;
     }
 
@@ -65,7 +65,7 @@ export default function Home() {
         setMessage(`Ошибка: ${result.error || 'Не удалось создать задачу'}`);
       }
     } catch (error) {
-      setMessage('Ошибка сети при отправке запроса.');
+      setMessage(`Ошибка сети: ${error instanceof Error ? error.message : 'Неизвестная ошибка'}`);
     }
   };
 
