@@ -24,7 +24,7 @@ export default function Home() {
     e.preventDefault();
     
     if (!token) {
-      setMessage(`Error`);
+      setMessage(e);
       return;
     }
 
